@@ -3,4 +3,9 @@
   width: 142px;
   height: 33px;
   background: url(../../images/logo.svg) no-repeat center / contain;
+  transition: .3s;
+}
+
+.logo:hover {
+  opacity: .6;
 }

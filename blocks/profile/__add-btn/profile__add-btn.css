@@ -7,4 +7,9 @@
   background: url(../../../images/profile-plus.svg) no-repeat center / 22px;
   border: 2px solid #fff;
   cursor: pointer;
+  transition: .3s;
+}
+
+.profile__add-btn:hover {
+  opacity: .6;
 }

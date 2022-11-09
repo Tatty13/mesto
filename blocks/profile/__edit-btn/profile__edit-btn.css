@@ -8,4 +8,9 @@
   border: 1px solid #fff;
   outline: none;
   cursor: pointer;
+  transition: .3s;
+}
+
+.profile__edit-btn:hover {
+  opacity: .6;
 }

@@ -1,3 +1,8 @@
 .card__like-icon {
   cursor: pointer;
+  transition: .3s;
+}
+
+.card__like-icon:hover {
+  opacity: .5;
 }
