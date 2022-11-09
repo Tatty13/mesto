@@ -1,0 +1,11 @@
+.profile__edit-btn {
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  grid-area: edit-btn;
+  background: url(../../../images/profile-pen.svg) no-repeat center / 10px;
+  border: 1px solid #fff;
+  outline: none;
+  cursor: pointer;
+}
