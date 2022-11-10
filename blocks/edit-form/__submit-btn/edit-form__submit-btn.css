@@ -16,3 +16,11 @@
 .edit-form__submit-btn:hover {
   background: rgba(0, 0, 0, .8);
 }
+
+@media screen and (max-width: 698px) {
+  .edit-form__submit-btn {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+  }
+}

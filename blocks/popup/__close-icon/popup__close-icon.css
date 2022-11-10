@@ -2,3 +2,10 @@
   width: 32px;
   height: 32px;
 }
+
+@media screen and (max-width: 698px) {
+  .popup__close-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

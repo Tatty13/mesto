@@ -16,3 +16,10 @@
 .popup__close-btn:active {
   transform: scale(.95);
 }
+
+@media screen and (max-width: 698px) {
+  .popup__close-btn {
+    top: -36px;
+    right: 0;
+  }
+}
