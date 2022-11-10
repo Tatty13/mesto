@@ -1,0 +1,18 @@
+.popup__close-btn {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  transition: .3s;
+}
+
+.popup__close-btn:hover {
+  opacity: .6;
+}
+
+.popup__close-btn:active {
+  transform: scale(.95);
+}

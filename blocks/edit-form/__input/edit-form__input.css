@@ -1,0 +1,23 @@
+.edit-form__input {
+  padding: 9px 0;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 400;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  outline: none;
+  transition: .3s;
+}
+
+.edit-form__input:first-of-type {
+  margin-bottom: 22px;
+}
+
+.edit-form__input:last-of-type {
+  margin-bottom: 48px;
+}
+
+.edit-form__input:focus {
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, .2);
+}
