@@ -6,3 +6,15 @@
   line-height: 1.22;
   color: #fff;
 }
+
+@media screen and (max-width: 758px) {
+  .profile__desc {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .profile__desc {
+    font-size: 14px;
+  }
+}

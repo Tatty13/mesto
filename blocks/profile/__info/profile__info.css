@@ -6,3 +6,15 @@
   align-items: baseline;
   gap: 8px 18px;
 }
+
+@media screen and (max-width: 758px) {
+  .profile__info {
+    margin-bottom: 34px;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .profile__info {
+    gap: 6px 10px;
+  }
+}

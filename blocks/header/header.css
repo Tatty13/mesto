@@ -3,3 +3,11 @@
   min-height: 73px;
   border-bottom: 1px solid #545454;
 }
+
+@media screen and (max-width: 468px) {
+  .header {
+    margin-top: 28px;
+    margin-bottom: 42px;
+    min-height: 56px;
+  }
+}

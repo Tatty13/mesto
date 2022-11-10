@@ -9,3 +9,17 @@
 .logo:hover {
   opacity: .6;
 }
+
+
+@media screen and (max-width: 968px) {
+  .logo {
+    transform: translateX(27px);
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .logo {
+    width: 103.74px;
+    height: 24.4px;
+  }
+}
