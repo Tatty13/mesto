@@ -10,6 +10,7 @@
   border: none;
   border-radius: 2px;
   outline: none;
+  cursor: pointer;
   transition: .3 ease-in-out;
 }
 
