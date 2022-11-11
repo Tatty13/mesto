@@ -5,10 +5,12 @@
     'desc desc';
   align-items: baseline;
   gap: 8px 18px;
+  max-width: 55%;
 }
 
 @media screen and (max-width: 758px) {
   .profile__info {
+    max-width: 100%;
     margin-bottom: 34px;
   }
 }
