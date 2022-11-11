@@ -3,10 +3,13 @@
   top: -40px;
   right: -40px;
   padding: 0;
-  background: transparent;
+  width: 32px;
+  height: 32px;
+  background: url(../../../images/popup-close-icon.svg) no-repeat center / contain transparent;
   border: 0;
   outline: 0;
   transition: .3s;
+  cursor: pointer;
 }
 
 .popup__close-btn:hover {
@@ -21,5 +24,7 @@
   .popup__close-btn {
     top: -36px;
     right: 0;
+    width: 20px;
+    height: 20px;
   }
 }
