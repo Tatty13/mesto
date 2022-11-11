@@ -11,8 +11,8 @@ function getProfileInfo() {
 }
 
 function updateProfileInfo(name, job) {
-   name = name.value;
-   job = job.value;
+  name = name.value;
+  job = job.value;
 
   userNameElement.textContent = name;
   userJobElement.textContent = job;
