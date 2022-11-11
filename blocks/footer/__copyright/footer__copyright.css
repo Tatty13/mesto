@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 968px) {
   .footer__copyright {
-    transform: translateX(19px);
+    margin-left: 19px;
   }
 }
 
