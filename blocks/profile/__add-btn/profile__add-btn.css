@@ -6,6 +6,7 @@
   box-sizing: border-box;
   background: url(../../../images/profile-plus.svg) no-repeat center / 22px;
   border: 2px solid #fff;
+  border-radius: 2px;
   cursor: pointer;
   transition: .3s;
 }
@@ -18,5 +19,6 @@
   .profile__add-btn {
     margin-left: unset;
     width: 282px;
+    background-size: 16px;
   }
 }

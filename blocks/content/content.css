@@ -2,5 +2,6 @@
   .content {
     padding-left: 19px;
     padding-right: 19px;
+    flex-grow: 1;
   }
 }
