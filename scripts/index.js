@@ -46,6 +46,10 @@ function getCardData() {
   };  
 }
 
+function toggleLikeBtn(evt) {
+  evt.target.classList.toggle('card__like-btn_active');
+}
+
 function createCard(cardData) {
   const cardTemplate = cardsListElement.querySelector('.cards__template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -57,6 +61,9 @@ function createCard(cardData) {
   cardElement.querySelector('.card__title').textContent = cardData.name;
 
   cardsListElement.prepend(cardElement);
+
+  const likeBtn = cardElement.querySelector('.card__like-btn');
+  likeBtn.addEventListener('click', toggleLikeBtn);
 }
 
 
