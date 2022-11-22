@@ -3,12 +3,24 @@ const userNameElement = profileInfoElement.querySelector('.profile__name');
 const userJobElement = profileInfoElement.querySelector('.profile__desc');
 const profileEditBtn = profileInfoElement.querySelector('.profile__edit-btn');
 
+const cardsListElement = document.querySelector('.cards__list');
+const addCardBtn = document.querySelector('.profile__add-btn');
+
+const closePopupBtns = document.querySelectorAll('.popup__close-btn');
+
+/* -------- profile popup -------- */
 const profilePopupElement = document.querySelector('.popup_content_edit-profile');
 const editProfileFormElement =  profilePopupElement.querySelector('.form_type_edit-profile');
 const inputProfileNameElement = editProfileFormElement.querySelector('.form__input_content_name');
 const inputJobElement = editProfileFormElement.querySelector('.form__input_content_job');
+/* -------- -------------- -------- */
 
-const closePopupBtns = document.querySelectorAll('.popup__close-btn');
+/* -------- add-card popup -------- */
+const addCardPopupElement = document.querySelector('.popup_content_add-card');
+const addCardFormElement = addCardPopupElement.querySelector('.form_type_add-card');
+const inputCardNameElement = addCardFormElement.querySelector('.form__input_content_card-name');
+const inputCardLinkElement = addCardFormElement.querySelector('.form__input_content_card-link');
+/* -------- -------------- -------- */
 
 
 function getProfileInfo() {
@@ -26,12 +38,40 @@ function updateProfileInfo() {
   userJobElement.textContent = job;
 }
 
+
+function getCardData() {
+  return {
+    name: inputCardNameElement.value,
+    link: inputCardLinkElement.value
+  };  
+}
+
+function createCard(cardData) {
+  const cardTemplate = cardsListElement.querySelector('.cards__template').content;
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+
+  const cardImgElement = cardElement.querySelector('.card__img');
+  cardImgElement.src = cardData.link;
+  cardImgElement.alt = cardData.name;
+  
+  cardElement.querySelector('.card__title').textContent = cardData.name;
+
+  cardsListElement.prepend(cardElement);
+}
+
+
 function openPopup(popupElement) {
   if (popupElement === profilePopupElement) {
     const profileInfo = getProfileInfo();
     inputProfileNameElement.value = profileInfo.userName;
     inputJobElement.value = profileInfo.userJob;
   }
+
+  if (popupElement === addCardPopupElement) {
+    inputCardNameElement.value = '';
+    inputCardLinkElement.value = '';
+  }
+
   popupElement.classList.add('popup_open');
 }
 
@@ -40,14 +80,23 @@ function closePopup(evt) {
   popup.classList.remove('popup_open');
 }
 
-function formSubmitHandler(evt) {
+
+function editProfileFormSubmitHandler(evt) {
   evt.preventDefault(); 
   updateProfileInfo();
   closePopup(evt);
 }
 
+function addCardFormSubmitHandler(evt) {
+  evt.preventDefault();
+  const cardData = getCardData();
+  console.log(cardData)
+  createCard(cardData);
+  closePopup(evt);
+}
 
-/* ----------- cards ----------- */
+
+/* ----------- default cards ----------- */
 
 const cardsData = [
   {
@@ -76,28 +125,6 @@ const cardsData = [
   },
 ]
 
-const cardsListElement = document.querySelector('.cards__list');
-const addCardBtn = document.querySelector('.profile__add-btn');
-
-const addCardPopupElement = document.querySelector('.popup_content_add-card');
-const addCardFormElement = addCardPopupElement.querySelector('.form_type_add-card');
-const inputCardNameElement = addCardFormElement.querySelector('.form__input_content_card-name');
-const inputCrdLinkElement = addCardFormElement.querySelector('.form__input_content_card-link');
-
-
-function createCard(cardData) {
-  const cardTemplate = cardsListElement.querySelector('.cards__template').content;
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-
-  const cardImgElement = cardElement.querySelector('.card__img');
-  cardImgElement.src = cardData.link;
-  cardImgElement.alt = cardData.name;
-  
-  cardElement.querySelector('.card__title').textContent = cardData.name;
-
-  cardsListElement.prepend(cardElement);
-}
-
 cardsData.forEach(card => createCard(card));
 
 /* ----------- ----- ----------- */
@@ -108,4 +135,5 @@ addCardBtn.addEventListener('click', () => openPopup(addCardPopupElement));
 
 closePopupBtns.forEach(btn => btn.addEventListener('click', closePopup));
 
-editProfileFormElement.addEventListener('submit', formSubmitHandler);
+editProfileFormElement.addEventListener('submit', editProfileFormSubmitHandler);
+addCardFormElement.addEventListener('submit', addCardFormSubmitHandler);
