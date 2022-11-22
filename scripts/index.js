@@ -22,6 +22,10 @@ const inputCardNameElement = addCardFormElement.querySelector('.form__input_cont
 const inputCardLinkElement = addCardFormElement.querySelector('.form__input_content_card-link');
 /* -------- -------------- -------- */
 
+/* -------- photo-popup -------- */
+const photoPopupElement = document.querySelector('.popup_content_photo');
+/* -------- -------------- -------- */
+
 
 function getProfileInfo() {
   const profileInfo = {};
@@ -54,6 +58,17 @@ function deleteCard(evt) {
   evt.target.closest('.card').remove();
 }
 
+
+function setImgImfo(currImg) {
+  const imgElement = photoPopupElement.querySelector('.popup__img');
+  const imgHeadingElement  = photoPopupElement.querySelector('.popup__img-heading');
+
+  imgElement.src = currImg.src;
+  imgElement.alt = currImg.alt;
+  imgHeadingElement.textContent = currImg.alt;
+}
+
+
 function createCard(cardData) {
   const cardTemplate = cardsListElement.querySelector('.cards__template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -64,13 +79,17 @@ function createCard(cardData) {
   
   cardElement.querySelector('.card__title').textContent = cardData.name;
 
-  cardsListElement.prepend(cardElement);
-
   const likeBtn = cardElement.querySelector('.card__like-btn');
   const deleteBtn = cardElement.querySelector('.card__delete-btn');
 
   likeBtn.addEventListener('click', toggleLikeBtn);
   deleteBtn.addEventListener('click', deleteCard);
+  cardImgElement.addEventListener('click', (evt) => {
+    setImgImfo(evt.target);
+    openPopup(photoPopupElement);
+  });
+
+  cardsListElement.prepend(cardElement);
 }
 
 
@@ -104,7 +123,6 @@ function editProfileFormSubmitHandler(evt) {
 function addCardFormSubmitHandler(evt) {
   evt.preventDefault();
   const cardData = getCardData();
-  console.log(cardData)
   createCard(cardData);
   closePopup(evt);
 }
