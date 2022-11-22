@@ -69,6 +69,27 @@ function setImgImfo(currImg) {
 }
 
 
+function openPopup(popupElement) {
+  if (popupElement === profilePopupElement) {
+    const profileInfo = getProfileInfo();
+    inputProfileNameElement.value = profileInfo.userName;
+    inputJobElement.value = profileInfo.userJob;
+  }
+
+  if (popupElement === addCardPopupElement) {
+    inputCardNameElement.value = '';
+    inputCardLinkElement.value = '';
+  }
+
+  popupElement.classList.add('popup_open');
+}
+
+function closePopup(evt) {
+  const popup = evt.target.closest('.popup');
+  popup.classList.remove('popup_open');
+}
+
+
 function createCard(cardData) {
   const cardTemplate = cardsListElement.querySelector('.cards__template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -90,27 +111,6 @@ function createCard(cardData) {
   });
 
   cardsListElement.prepend(cardElement);
-}
-
-
-function openPopup(popupElement) {
-  if (popupElement === profilePopupElement) {
-    const profileInfo = getProfileInfo();
-    inputProfileNameElement.value = profileInfo.userName;
-    inputJobElement.value = profileInfo.userJob;
-  }
-
-  if (popupElement === addCardPopupElement) {
-    inputCardNameElement.value = '';
-    inputCardLinkElement.value = '';
-  }
-
-  popupElement.classList.add('popup_open');
-}
-
-function closePopup(evt) {
-  const popup = evt.target.closest('.popup');
-  popup.classList.remove('popup_open');
 }
 
 
