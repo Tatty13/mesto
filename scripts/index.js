@@ -109,6 +109,11 @@ function createCard(cardData) {
     openPopup(photoPopupElement);
   });
 
+  return cardElement;
+}
+
+function prependCard(cardData) {
+  const cardElement = createCard(cardData);
   cardsListElement.prepend(cardElement);
 }
 
@@ -122,7 +127,7 @@ function editProfileFormSubmitHandler(evt) {
 function addCardFormSubmitHandler(evt) {
   evt.preventDefault();
   const cardData = getCardData();
-  createCard(cardData);
+  prependCard(cardData);
   closePopup(evt);
 }
 
@@ -156,7 +161,7 @@ const cardsData = [
   },
 ]
 
-cardsData.forEach(card => createCard(card));
+cardsData.forEach(card => prependCard(card));
 
 /* ----------- ----- ----------- */
 
