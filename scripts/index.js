@@ -24,6 +24,8 @@ const inputCardLinkElement = addCardFormElement.querySelector('.form__input_cont
 
 /* -------- photo-popup -------- */
 const photoPopupElement = document.querySelector('.popup_content_photo');
+const imgElement = photoPopupElement.querySelector('.popup__img');
+const imgHeadingElement  = photoPopupElement.querySelector('.popup__img-heading');
 /* -------- -------------- -------- */
 
 
@@ -60,9 +62,6 @@ function deleteCard(evt) {
 
 
 function setImgInfo(currImg) {
-  const imgElement = photoPopupElement.querySelector('.popup__img');
-  const imgHeadingElement  = photoPopupElement.querySelector('.popup__img-heading');
-
   imgElement.src = currImg.src;
   imgElement.alt = currImg.alt;
   imgHeadingElement.textContent = currImg.alt;
