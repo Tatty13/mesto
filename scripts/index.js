@@ -69,18 +69,20 @@ function setImgInfo(currImg) {
 
 
 function openPopup(popupElement) {
-  if (popupElement === profilePopupElement) {
-    const profileInfo = getProfileInfo();
-    inputProfileNameElement.value = profileInfo.userName;
-    inputJobElement.value = profileInfo.userJob;
-  }
-
-  if (popupElement === addCardPopupElement) {
-    inputCardNameElement.value = '';
-    inputCardLinkElement.value = '';
-  }
-
   popupElement.classList.add('popup_open');
+}
+
+function openProfilePopup() {
+  const profileInfo = getProfileInfo();
+  inputProfileNameElement.value = profileInfo.userName;
+  inputJobElement.value = profileInfo.userJob;
+  openPopup(profilePopupElement);
+}
+
+function openCardPopup() {
+  inputCardNameElement.value = '';
+  inputCardLinkElement.value = '';
+  openPopup(addCardPopupElement);
 }
 
 function closePopup(evt) {
@@ -166,8 +168,8 @@ cardsData.forEach(card => prependCard(card));
 /* ----------- ----- ----------- */
 
 
-profileEditBtn.addEventListener('click', () => openPopup(profilePopupElement));
-addCardBtn.addEventListener('click', () => openPopup(addCardPopupElement));
+profileEditBtn.addEventListener('click', openProfilePopup);
+addCardBtn.addEventListener('click', openCardPopup);
 
 closePopupBtns.forEach(btn => btn.addEventListener('click', closePopup));
 
