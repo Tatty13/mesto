@@ -59,7 +59,7 @@ function deleteCard(evt) {
 }
 
 
-function setImgImfo(currImg) {
+function setImgInfo(currImg) {
   const imgElement = photoPopupElement.querySelector('.popup__img');
   const imgHeadingElement  = photoPopupElement.querySelector('.popup__img-heading');
 
@@ -106,7 +106,7 @@ function createCard(cardData) {
   likeBtn.addEventListener('click', toggleLikeBtn);
   deleteBtn.addEventListener('click', deleteCard);
   cardImgElement.addEventListener('click', (evt) => {
-    setImgImfo(evt.target);
+    setImgInfo(evt.target);
     openPopup(photoPopupElement);
   });
 
