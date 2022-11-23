@@ -85,6 +85,11 @@ function openCardPopup() {
   openPopup(addCardPopupElement);
 }
 
+function openImgPopup(evt) {
+  setImgInfo(evt.target);
+  openPopup(photoPopupElement);
+}
+
 function closePopup(evt) {
   const popup = evt.target.closest('.popup');
   popup.classList.remove('popup_open');
@@ -106,10 +111,7 @@ function createCard(cardData) {
 
   likeBtn.addEventListener('click', toggleLikeBtn);
   deleteBtn.addEventListener('click', deleteCard);
-  cardImgElement.addEventListener('click', (evt) => {
-    setImgInfo(evt.target);
-    openPopup(photoPopupElement);
-  });
+  cardImgElement.addEventListener('click', openImgPopup);
 
   return cardElement;
 }
