@@ -6,7 +6,7 @@ const userJobElement = profileInfoElement.querySelector('.profile__desc');
 const profileEditBtn = profileInfoElement.querySelector('.profile__edit-btn');
 
 const cardsListElement = document.querySelector('.cards__list');
-const cardTemplateItemElement = cardsListElement.querySelector('.cards__template').content.querySelector('.card');
+const cardTemplateItemElement = document.querySelector('.card-template').content.querySelector('.card');
 const addCardBtn = document.querySelector('.profile__add-btn');
 
 const closePopupBtns = document.querySelectorAll('.popup__close-btn');

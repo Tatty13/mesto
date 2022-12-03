@@ -26,24 +26,14 @@
         <button class="profile__add-btn" type="button" aria-label="Добавить"></button>
       </section>
       <section class="cards" aria-label="Место">
-        <ul class="cards__list">
-          <template class="cards__template">
-            <li class="card">
-              <div class="card__img-wrap">
-                <img class="card__img" src="/" alt="">
-              </div>
-              <h2 class="card__title"></h2>
-              <button class="card__like-btn" type="button" aria-label="Нравится"></button>
-              <button class="card__delete-btn" type="button" aria-label="Удалить"></button>
-            </li>
-          </template>
-        </ul>
+        <ul class="cards__list"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
   </div>
+
   <dialog class="popup popup_content_edit-profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -55,6 +45,7 @@
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
     </div>
   </dialog>
+
   <dialog class="popup popup_content_add-card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
@@ -66,6 +57,7 @@
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
     </div>
   </dialog>
+
   <dialog class="popup popup_content_photo">
     <div class="popup__img-container">
       <img class="popup__img" src="/" alt="">
@@ -73,6 +65,17 @@
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
     </div>
   </dialog>
+
+  <template class="card-template">
+    <li class="card">
+      <div class="card__img-wrap">
+        <img class="card__img" src="/" alt="">
+      </div>
+      <h2 class="card__title"></h2>
+      <button class="card__like-btn" type="button" aria-label="Нравится"></button>
+      <button class="card__delete-btn" type="button" aria-label="Удалить"></button>
+    </li>
+  </template>
 
   <script src="./scripts/index.js" type="module"></script>
 </body>
