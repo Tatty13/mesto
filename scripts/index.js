@@ -57,10 +57,10 @@ function deleteCard(evt) {
 }
 
 
-function setImgInfo(currImg) {
-  imgElement.src = currImg.src;
-  imgElement.alt = currImg.alt;
-  imgHeadingElement.textContent = currImg.alt;
+function setImgInfo(targetImg, targetHeading, currImg) {
+  targetImg.src = currImg.src;
+  targetImg.alt = currImg.alt;
+  targetHeading.textContent = currImg.alt;
 }
 
 
@@ -82,7 +82,7 @@ function openCardPopup() {
 }
 
 function openImgPopup(evt) {
-  setImgInfo(evt.target);
+  setImgInfo(imgElement, imgHeadingElement, evt.target);
   openPopup(photoPopupElement);
 }
 
