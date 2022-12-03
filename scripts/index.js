@@ -76,8 +76,7 @@ function openProfilePopup() {
 }
 
 function openCardPopup() {
-  inputCardNameElement.value = '';
-  inputCardLinkElement.value = '';
+  addCardFormElement.reset();
   openPopup(addCardPopupElement);
 }
 
