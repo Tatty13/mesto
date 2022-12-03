@@ -6,6 +6,7 @@ const userJobElement = profileInfoElement.querySelector('.profile__desc');
 const profileEditBtn = profileInfoElement.querySelector('.profile__edit-btn');
 
 const cardsListElement = document.querySelector('.cards__list');
+const cardTemplateItemElement = cardsListElement.querySelector('.cards__template').content.querySelector('.card');
 const addCardBtn = document.querySelector('.profile__add-btn');
 
 const closePopupBtns = document.querySelectorAll('.popup__close-btn');
@@ -93,9 +94,7 @@ function closePopup(evt) {
 
 
 function createCard(cardData) {
-  const cardTemplate = cardsListElement.querySelector('.cards__template').content;
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-
+  const cardElement = cardTemplateItemElement.cloneNode(true);
   const cardImgElement = cardElement.querySelector('.card__img');
   cardImgElement.src = cardData.link;
   cardImgElement.alt = cardData.name;
