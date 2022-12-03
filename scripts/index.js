@@ -1,9 +1,12 @@
+import cardsData from './cardsData.js';
+
 const profileInfoElement = document.querySelector('.profile__info');
 const userNameElement = profileInfoElement.querySelector('.profile__name');
 const userJobElement = profileInfoElement.querySelector('.profile__desc');
 const profileEditBtn = profileInfoElement.querySelector('.profile__edit-btn');
 
 const cardsListElement = document.querySelector('.cards__list');
+const cardTemplateItemElement = cardsListElement.querySelector('.cards__template').content.querySelector('.card');
 const addCardBtn = document.querySelector('.profile__add-btn');
 
 const closePopupBtns = document.querySelectorAll('.popup__close-btn');
@@ -97,9 +100,7 @@ function closePopup(evt) {
 
 
 function createCard(cardData) {
-  const cardTemplate = cardsListElement.querySelector('.cards__template').content;
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-
+  const cardElement = cardTemplateItemElement.cloneNode(true);
   const cardImgElement = cardElement.querySelector('.card__img');
   cardImgElement.src = cardData.link;
   cardImgElement.alt = cardData.name;
@@ -135,37 +136,9 @@ function addCardFormSubmitHandler(evt) {
   closePopup(evt);
 }
 
-
 /* ----------- default cards ----------- */
 
-const cardsData = [
-  {
-    name: 'Шлиссельбург',
-    link: './images/place-oreshek.jpg'
-  },
-  {
-    name: 'Рускеала, Карелия',
-    link: './images/place-ruskeala.jpg'
-  },
-  {
-    name: 'Ленинградская область',
-    link: './images/place-yastrebinoe.jpg'
-  },
-  {
-    name: 'Санкт-Петербур',
-    link: './images/place-spb.jpg'
-  },
-  {
-    name: 'Великие Луки',
-    link: './images/place-velikie-luki.jpg'
-  },
-  {
-    name: 'Вологодская область',
-    link: './images/place-vologodskaya.jpg'
-  },
-]
-
-cardsData.forEach(card => prependCard(card));
+cardsData.forEach(card => createCard(card));
 
 /* ----------- ----- ----------- */
 
