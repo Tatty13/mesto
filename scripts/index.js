@@ -48,13 +48,6 @@ function updateProfileInfo() {
 }
 
 
-function getCardData() {
-  return {
-    name: inputCardNameElement.value,
-    link: inputCardLinkElement.value
-  };  
-}
-
 function toggleLikeBtn(evt) {
   evt.target.classList.toggle('card__like-btn_active');
 }
@@ -99,13 +92,13 @@ function closePopup(evt) {
 }
 
 
-function createCard(cardData) {
+function createCard(cardName, cardLink) {
   const cardElement = cardTemplateItemElement.cloneNode(true);
   const cardImgElement = cardElement.querySelector('.card__img');
-  cardImgElement.src = cardData.link;
-  cardImgElement.alt = cardData.name;
+  cardImgElement.src = cardLink;
+  cardImgElement.alt = cardName;
   
-  cardElement.querySelector('.card__title').textContent = cardData.name;
+  cardElement.querySelector('.card__title').textContent = cardName;
 
   const likeBtn = cardElement.querySelector('.card__like-btn');
   const deleteBtn = cardElement.querySelector('.card__delete-btn');
@@ -117,9 +110,8 @@ function createCard(cardData) {
   return cardElement;
 }
 
-function prependCard(cardData) {
-  const cardElement = createCard(cardData);
-  cardsListElement.prepend(cardElement);
+function prependCard(card, cardContainer) {
+  cardContainer.prepend(card);
 }
 
 
@@ -131,15 +123,13 @@ function editProfileFormSubmitHandler(evt) {
 
 function addCardFormSubmitHandler(evt) {
   evt.preventDefault();
-  const cardData = getCardData();
-  prependCard(cardData);
+  const card = createCard(inputCardNameElement.value, inputCardLinkElement.value);
+  prependCard(card, cardsListElement);
   closePopup(evt);
 }
 
 /* ----------- default cards ----------- */
-
-cardsData.forEach(card => createCard(card));
-
+cardsData.forEach(card => prependCard(createCard(card.name, card.link), cardsListElement));
 /* ----------- ----- ----------- */
 
 
