@@ -70,8 +70,8 @@ function openPopup(popupElement) {
   popupElement.classList.add('popup_open');
 }
 
-function closePopup(evt) {
-  const popup = evt.target.closest('.popup');
+function closePopup(targetElement) {
+  const popup = targetElement.closest('.popup');
   popup.classList.remove('popup_open');
 }
 
@@ -177,7 +177,7 @@ function enableValidation(settings) {
       evt.preventDefault();
       if (isFormValid(inputList)) {
         handleSubmit();
-        closePopup(evt);
+        closePopup(evt.target);
         toggleSubmitBtnState(submitBtnElement, inputList);
       }
     });
@@ -231,7 +231,7 @@ document.addEventListener('click', (evt) => {
   const targetElement = evt.target;
 
   if (targetElement.classList.contains('popup__close-btn')) {
-    closePopup(evt);
+    closePopup(targetElement);
     return;
   }
 
@@ -246,7 +246,14 @@ document.addEventListener('click', (evt) => {
   }
 
   if (targetElement.classList.contains('popup')) {
-    closePopup(evt);
+    closePopup(targetElement);
     return;
   }
+})
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.code !== 'Escape') return;
+
+  const popup = document.querySelector('.popup_open');
+  if (popup) closePopup(popup);
 })
