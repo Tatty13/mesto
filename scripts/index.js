@@ -244,4 +244,9 @@ document.addEventListener('click', (evt) => {
     openCardPopup();
     return;
   }
+
+  if (targetElement.classList.contains('popup')) {
+    closePopup(evt);
+    return;
+  }
 })
