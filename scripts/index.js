@@ -47,6 +47,12 @@ function updateProfileInfo() {
   userJobElement.textContent = job;
 }
 
+function setProfileInfoToTheInputs() {
+  const profileInfo = getProfileInfo();
+  inputProfileNameElement.value = profileInfo.userName;
+  inputJobElement.value = profileInfo.userJob;
+}
+
 
 function toggleLikeBtn(evt) {
   evt.target.classList.toggle('card__like-btn_active');
@@ -193,9 +199,7 @@ function enableValidation(settings) {
 
 
 function openProfilePopup() {
-  const profileInfo = getProfileInfo();
-  inputProfileNameElement.value = profileInfo.userName;
-  inputJobElement.value = profileInfo.userJob;
+  setProfileInfoToTheInputs();
   openPopup(profilePopupElement);
 }
 
@@ -213,6 +217,7 @@ function openImgPopup(evt) {
 cardsData.forEach(card => prependCard(createCard(card.name, card.link), cardsListElement));
 /* ----------- ----- ----------- */
 
+setProfileInfoToTheInputs();
 enableValidation(formSettings);
 
 profileEditBtn.addEventListener('click', openProfilePopup);
