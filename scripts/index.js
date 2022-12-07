@@ -230,7 +230,7 @@ cardsListElement.addEventListener('click', (evt) => {
 document.addEventListener('click', (evt) => {
   const targetElement = evt.target;
 
-  if (targetElement.classList.contains('popup__close-btn')) {
+  if (targetElement.classList.contains('popup__close-btn') || targetElement.classList.contains('popup')) {
     closePopup(targetElement);
     return;
   }
@@ -242,11 +242,6 @@ document.addEventListener('click', (evt) => {
 
   if (targetElement.classList.contains('profile__add-btn')) {
     openCardPopup();
-    return;
-  }
-
-  if (targetElement.classList.contains('popup')) {
-    closePopup(targetElement);
     return;
   }
 })
