@@ -42,7 +42,7 @@
         <span class="form__input-error profile-name-input-error"></span>
         <input class="form__input form__input_content_job" type="text" name="profile-job" minlength="2" maxlength="200" placeholder="Введите род деятельности" required>
         <span class="form__input-error profile-job-input-error"></span>
-        <button class="form__submit-btn" type="submit">Сохранить</button>
+        <button class="form__submit-btn" type="submit" name="submit-btn">Сохранить</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
     </div>
@@ -51,10 +51,12 @@
   <dialog class="popup popup_content_add-card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
-      <form class="form form_type_add-card" action="#" name="addCard">
-        <input class="form__input form__input_content_card-name" type="text" name="cardName" placeholder="Название">
-        <input class="form__input form__input_content_card-link" type="text" name="cardLink" placeholder="Ссылка на картинку">
-        <button class="form__submit-btn" type="submit">Создать</button>
+      <form class="form form_type_add-card" action="#" name="addCard" novalidate>
+        <input class="form__input form__input_content_card-name" type="text" name="card-name" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="form__input-error card-name-input-error"></span>
+        <input class="form__input form__input_content_card-link" type="url" name="card-link" placeholder="Ссылка на картинку" required>
+        <span class="form__input-error card-link-input-error"></span>
+        <button class="form__submit-btn" type="submit" name="submit-btn">Создать</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
     </div>

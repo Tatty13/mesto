@@ -123,15 +123,23 @@ function toggleInputError(formElement, inputElement) {
     hideInputError(formElement, inputElement);
 }
 
-function toggleSubmitBtnState(submitBtnElement, inputList) {
-  isFormValid(inputList) ? 
-    submitBtnElement.classList.remove('form__submit-btn_disabled') :
-    submitBtnElement.classList.add('form__submit-btn_disabled');
+
+function makeSubmitBtnActive(submitBtnElement) {
+ submitBtnElement.classList.remove('form__submit-btn_disabled');
 }
 
-function setEventListeners(formElement) {
-  const inputList = [...formElement.querySelectorAll('.form__input')];
-  const submitBtnElement = formElement.querySelector('.form__submit-btn');
+function makeSubmitBtnDisabled(submitBtnElement) {
+  submitBtnElement.classList.add('form__submit-btn_disabled');
+}
+
+function toggleSubmitBtnState(submitBtnElement, inputList) {
+  isFormValid(inputList) ? 
+    makeSubmitBtnActive(submitBtnElement) :
+    makeSubmitBtnDisabled(submitBtnElement);
+}
+
+
+function setEventListeners(formElement, inputList, submitBtnElement) {
   toggleSubmitBtnState(submitBtnElement, inputList);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
@@ -146,32 +154,41 @@ function handleProfileFormSubmit() {
   updateProfileInfo();
 }
 
-function addCardFormSubmitHandler(evt) {
-  evt.preventDefault();
+function handleCardFormSubmit() {
   const card = createCard(inputCardNameElement.value, inputCardLinkElement.value);
   prependCard(card, cardsListElement);
-  closePopup(evt);
+  addCardFormElement.reset();
 }
 
 const formSettings = {
   editProfile: {
-    formElement: editProfileFormElement,
     handleSubmit: handleProfileFormSubmit,
+  },
+  addCard: {
+    handleSubmit: handleCardFormSubmit,
   }
 }
 
 
 function enableValidation(settings) {
-  const {formElement, handleSubmit} = settings;
-  setEventListeners(formElement);
-  formElement.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+  const forms = [...document.forms];
 
-    if (isFormValid([...formElement.elements])) {
-      handleSubmit();
-      closePopup(evt);
-    }
-  });
+  forms.forEach(formElement => {
+    const inputList = [...formElement.elements];
+    const submitBtnElement = formElement.elements['submit-btn'];
+    const {handleSubmit} = settings[formElement.name];
+
+    setEventListeners(formElement, inputList, submitBtnElement);
+
+    formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      if (isFormValid(inputList)) {
+        handleSubmit();
+        closePopup(evt);
+        toggleSubmitBtnState(submitBtnElement, inputList);
+      }
+    });
+  })
 }
 
 
@@ -179,12 +196,10 @@ function openProfilePopup() {
   const profileInfo = getProfileInfo();
   inputProfileNameElement.value = profileInfo.userName;
   inputJobElement.value = profileInfo.userJob;
-  enableValidation(formSettings.editProfile);
   openPopup(profilePopupElement);
 }
 
 function openCardPopup() {
-  addCardFormElement.reset();
   openPopup(addCardPopupElement);
 }
 
@@ -198,10 +213,9 @@ function openImgPopup(evt) {
 cardsData.forEach(card => prependCard(createCard(card.name, card.link), cardsListElement));
 /* ----------- ----- ----------- */
 
+enableValidation(formSettings);
 
 profileEditBtn.addEventListener('click', openProfilePopup);
 addCardBtn.addEventListener('click', openCardPopup);
 
 closePopupBtns.forEach(btn => btn.addEventListener('click', closePopup));
-
-addCardFormElement.addEventListener('submit', addCardFormSubmitHandler);
