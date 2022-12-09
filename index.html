@@ -26,46 +26,42 @@
         <button class="profile__add-btn" type="button" aria-label="Добавить"></button>
       </section>
       <section class="cards" aria-label="Место">
-        <ul class="cards__list">
-          <template class="cards__template">
-            <li class="card">
-              <div class="card__img-wrap">
-                <img class="card__img" src="/" alt="">
-              </div>
-              <h2 class="card__title"></h2>
-              <button class="card__like-btn" type="button" aria-label="Нравится"></button>
-              <button class="card__delete-btn" type="button" aria-label="Удалить"></button>
-            </li>
-          </template>
-        </ul>
+        <ul class="cards__list"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
   </div>
+
   <dialog class="popup popup_content_edit-profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="form form_type_edit-profile" action="#" name="edit-profile-info-form">
-        <input class="form__input form__input_content_name" type="text" name="name" placeholder="Введите имя">
-        <input class="form__input form__input_content_job" type="text" name="job" placeholder="Введите род деятельности">
-        <button class="form__submit-btn" type="submit">Сохранить</button>
+      <form class="form form_type_edit-profile" action="#" name="editProfile" novalidate>
+        <input class="form__input form__input_content_name" type="text" name="profile-name" placeholder="Введите имя" minlength="2" maxlength="40" required>
+        <span class="form__input-error profile-name-input-error"></span>
+        <input class="form__input form__input_content_job" type="text" name="profile-job" minlength="2" maxlength="200" placeholder="Введите род деятельности" required>
+        <span class="form__input-error profile-job-input-error"></span>
+        <button class="form__submit-btn" type="submit" name="submit-btn">Сохранить</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
     </div>
   </dialog>
+
   <dialog class="popup popup_content_add-card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
-      <form class="form form_type_add-card" action="#" name="add-new-card-form">
-        <input class="form__input form__input_content_card-name" type="text" name="card-name" placeholder="Название">
-        <input class="form__input form__input_content_card-link" type="text" name="card-link" placeholder="Ссылка на картинку">
-        <button class="form__submit-btn" type="submit">Создать</button>
+      <form class="form form_type_add-card" action="#" name="addCard" novalidate>
+        <input class="form__input form__input_content_card-name" type="text" name="card-name" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="form__input-error card-name-input-error"></span>
+        <input class="form__input form__input_content_card-link" type="url" name="card-link" placeholder="Ссылка на картинку" required>
+        <span class="form__input-error card-link-input-error"></span>
+        <button class="form__submit-btn" type="submit" name="submit-btn">Создать</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
     </div>
   </dialog>
+
   <dialog class="popup popup_content_photo">
     <div class="popup__img-container">
       <img class="popup__img" src="/" alt="">
@@ -74,6 +70,17 @@
     </div>
   </dialog>
 
-  <script src="./scripts/index.js"></script>
+  <template class="card-template">
+    <li class="card">
+      <div class="card__img-wrap">
+        <img class="card__img" src="/" alt="">
+      </div>
+      <h2 class="card__title"></h2>
+      <button class="card__like-btn" type="button" aria-label="Нравится"></button>
+      <button class="card__delete-btn" type="button" aria-label="Удалить"></button>
+    </li>
+  </template>
+
+  <script src="./scripts/index.js" type="module"></script>
 </body>
 </html>
