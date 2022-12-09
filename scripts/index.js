@@ -69,13 +69,22 @@ function setImgInfo(targetImg, targetHeading, currImg) {
 }
 
 
+function handleEscapeKey(evt) {
+  if (evt.code !== 'Escape') return;
+  const popupElement = document.querySelector('.popup_open');
+  closePopup(popupElement);
+}
+
+
 function openPopup(popupElement) {
   popupElement.classList.add('popup_open');
+  document.addEventListener('keydown', handleEscapeKey);
 }
 
 function closePopup(targetElement) {
-  const popup = targetElement.closest('.popup');
-  popup.classList.remove('popup_open');
+  const popupElement = targetElement.closest('.popup');
+  popupElement.classList.remove('popup_open');
+  document.removeEventListener('keydown', handleEscapeKey);
 }
 
 
@@ -170,11 +179,4 @@ document.addEventListener('click', (evt) => {
     openCardPopup();
     return;
   }
-})
-
-document.addEventListener('keydown', (evt) => {
-  if (evt.code !== 'Escape') return;
-
-  const popup = document.querySelector('.popup_open');
-  if (popup) closePopup(popup);
 })
