@@ -1,4 +1,7 @@
 import cardsData from './cardsData.js';
+import formsConfig from './formsConfigData.js';
+import enableValidation from './validate.js';
+
 
 const profileInfoElement = document.querySelector('.profile__info');
 const userNameElement = profileInfoElement.querySelector('.profile__name');
@@ -90,107 +93,13 @@ function prependCard(card, cardContainer) {
 }
 
 
-function showInputError(formElement, inputElement, errorMessage) {
-  const errorElement = formElement.querySelector(`.${inputElement.name}-input-error`);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active');
-}
-
-function hideInputError(formElement, inputElement) {
-  const errorElement = formElement.querySelector(`.${inputElement.name}-input-error`);
-  errorElement.classList.remove('form__input-error_active');
-  errorElement.textContent = '';
-}
-
-function isInputValid(inputElement) {
-  return inputElement.validity.valid;
-}
-
-function isFormValid(inputList) {
-  return !inputList.some(input => !isInputValid(input));
-}
-
-function toggleInputError(formElement, inputElement) {
-  !isInputValid(inputElement) ? 
-    showInputError(formElement, inputElement, inputElement.validationMessage) : 
-    hideInputError(formElement, inputElement);
-}
-
-
-function makeSubmitBtnActive(submitBtnElement) {
- submitBtnElement.classList.remove('form__submit-btn_disabled');
-}
-
-function makeSubmitBtnDisabled(submitBtnElement) {
-  submitBtnElement.classList.add('form__submit-btn_disabled');
-}
-
-function toggleSubmitBtnState(submitBtnElement, inputList) {
-  isFormValid(inputList) ? 
-    makeSubmitBtnActive(submitBtnElement) :
-    makeSubmitBtnDisabled(submitBtnElement);
-}
-
-
-function setEventListeners(formElement, inputList, submitBtnElement) {
-  toggleSubmitBtnState(submitBtnElement, inputList);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
-      toggleInputError(formElement, inputElement);
-      toggleSubmitBtnState(submitBtnElement, inputList);
-    });
-  });
-};
-
-
-function handleProfileFormSubmit() {
-  updateProfileInfo();
-}
-
-function handleCardFormSubmit() {
-  const card = createCard(inputCardNameElement.value, inputCardLinkElement.value);
-  prependCard(card, cardsListElement);
-  addCardFormElement.reset();
-}
-
-const formSettings = {
-  editProfile: {
-    handleSubmit: handleProfileFormSubmit,
-  },
-  addCard: {
-    handleSubmit: handleCardFormSubmit,
-  }
-}
-
-
-function enableValidation(settings) {
-  const forms = [...document.forms];
-
-  forms.forEach(formElement => {
-    const inputList = [...formElement.elements];
-    const submitBtnElement = formElement.elements['submit-btn'];
-    const {handleSubmit} = settings[formElement.name];
-
-    setEventListeners(formElement, inputList, submitBtnElement);
-
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      if (isFormValid(inputList)) {
-        handleSubmit();
-        closePopup(evt.target);
-        toggleSubmitBtnState(submitBtnElement, inputList);
-      }
-    });
-  })
-}
-
-
 function openProfilePopup() {
   setProfileInfoToTheInputs();
   openPopup(profilePopupElement);
 }
 
 function openCardPopup() {
+  addCardFormElement.reset();
   openPopup(addCardPopupElement);
 }
 
@@ -200,12 +109,29 @@ function openImgPopup(targetElement) {
 }
 
 
+function handleProfileFormSubmit(evt) {
+  updateProfileInfo();
+  closePopup(evt.target);
+}
+
+function handleCardFormSubmit(evt) {
+  const card = createCard(inputCardNameElement.value, inputCardLinkElement.value);
+  prependCard(card, cardsListElement);
+  closePopup(evt.target);
+}
+
+
 /* ----------- default cards ----------- */
 cardsData.forEach(card => prependCard(createCard(card.name, card.link), cardsListElement));
 /* ----------- ----- ----------- */
 
 setProfileInfoToTheInputs();
-enableValidation(formSettings);
+enableValidation(formsConfig.editProfile);
+enableValidation(formsConfig.addCard);
+
+editProfileFormElement.addEventListener('submit', handleProfileFormSubmit);
+addCardFormElement.addEventListener('submit', handleCardFormSubmit);
+
 
 cardsListElement.addEventListener('click', (evt) => {
   const targetElement = evt.target;
