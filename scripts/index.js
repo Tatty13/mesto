@@ -61,8 +61,8 @@ function setProfileInfoToTheInputs() {
 }
 
 
-function toggleLikeBtn(targetElement) {
-  targetElement.classList.toggle('card__like-btn_active');
+function toggleLikeBtn(likeBtnElement) {
+  likeBtnElement.classList.toggle('card__like-btn_active');
 }
 
 function deleteCard(card) {
