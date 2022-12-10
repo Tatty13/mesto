@@ -1,6 +1,6 @@
 import cardsData from './cardsData.js';
 import formsConfig from './formsConfigData.js';
-import enableValidation from './validate.js';
+import {makeSubmitBtnDisabled, enableValidation} from './validate.js';
 
 
 const profileInfoElement = document.querySelector('.profile__info');
@@ -22,6 +22,7 @@ const cardPopupElement = document.querySelector('.popup_content_add-card');
 const cardFormElement = cardPopupElement.querySelector('.form_type_add-card');
 const inputCardNameElement = cardFormElement.querySelector('.form__input_content_card-name');
 const inputCardLinkElement = cardFormElement.querySelector('.form__input_content_card-link');
+const cardFormSubmitBtmElement = cardFormElement.querySelector('.form__submit-btn');
 /* -------- -------------- -------- */
 
 /* -------- photo-popup -------- */
@@ -127,6 +128,8 @@ function handleCardFormSubmit(evt) {
   const card = createCard(inputCardNameElement.value, inputCardLinkElement.value);
   prependCard(card, cardsListElement);
   closePopup(evt.target);
+  cardFormElement.reset();
+  makeSubmitBtnDisabled(cardFormSubmitBtmElement, formsConfig.addCard.inactiveButtonClass);
 }
 
 

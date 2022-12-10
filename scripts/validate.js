@@ -86,4 +86,4 @@ function enableValidation(config) {
 enableValidation(formsConfig)
 */
 
-export default enableValidation;
+export {makeSubmitBtnDisabled, enableValidation};
