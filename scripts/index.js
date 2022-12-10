@@ -12,7 +12,6 @@ const cardTemplateItemElement = document.querySelector('.card-template').content
 
 const profileEditBtn = profileInfoElement.querySelector('.profile__edit-btn'); 
 const cardAddBtn = document.querySelector('.profile__add-btn'); 
-const closePopupBtns = document.querySelectorAll('.popup__close-btn');
 
 /** -------- all popups --------  */
 const popups = document.querySelectorAll('.popup');
@@ -78,22 +77,20 @@ function setImgInfo(targetImg, targetHeading, currImg) {
 }
 
 
+function handleEscapeKey(evt) {
+  if (evt.code !== 'Escape') return;
+  const popupElement = document.querySelector('.popup_open');
+  closePopup(popupElement);
+}
+
 function openPopup(popupElement) {
   popupElement.classList.add('popup_open');
   document.addEventListener('keydown', handleEscapeKey);
 }
 
-function closePopup(targetElement) {
-  const popupElement = targetElement.closest('.popup');
+function closePopup(popupElement) {
   popupElement.classList.remove('popup_open');
   document.removeEventListener('keydown', handleEscapeKey);
-}
-
-
-function handleEscapeKey(evt) {
-  if (evt.code !== 'Escape') return;
-  const popupElement = document.querySelector('.popup_open');
-  closePopup(popupElement);
 }
 
 
@@ -134,16 +131,15 @@ function openImgPopup(targetElement) {
 }
 
 
-function handleProfileFormSubmit(evt) {
+function handleProfileFormSubmit() {
   updateProfileInfo();
-  closePopup(evt.target);
+  closePopup(profilePopupElement);
 }
 
-function handleCardFormSubmit(evt) {
+function handleCardFormSubmit() {
   const card = createCard(getCardData(inputCardNameElement, inputCardLinkElement));
   prependCard(card, cardsListElement);
-  closePopup(evt.target);
-  cardFormElement.reset();
+  closePopup(cardPopupElement);
   makeSubmitBtnDisabled(cardFormSubmitBtmElement, formsConfig.addCard.inactiveButtonClass);
 }
 
@@ -155,8 +151,16 @@ setProfileInfoToTheInputs();
 enableValidation(formsConfig.editProfile);
 enableValidation(formsConfig.addCard);
 
+
+profileEditBtn.addEventListener('click', openProfilePopup); 
+cardAddBtn.addEventListener('click', openCardPopup); 
+
 profileEditFormElement.addEventListener('submit', handleProfileFormSubmit);
 cardFormElement.addEventListener('submit', handleCardFormSubmit);
+
+popups.forEach(popupElement => popupElement.addEventListener('click', (evt) => {
+  if (evt.target === popupElement || evt.target.classList.contains('popup__close-btn')) closePopup(popupElement);
+}));
 
 
 cardsListElement.addEventListener('click', (evt) => {
@@ -177,14 +181,4 @@ cardsListElement.addEventListener('click', (evt) => {
     openImgPopup(targetElement);
     return;
   }
-})
-
-
-profileEditBtn.addEventListener('click', openProfilePopup); 
-cardAddBtn.addEventListener('click', openCardPopup); 
-
-closePopupBtns.forEach(btn => btn.addEventListener('click', (evt) => closePopup(evt.target))); 
-
-popups.forEach(popupElement => popupElement.addEventListener('click', (evt) => {
-  if (evt.target === popupElement) closePopup(popupElement);
-}));
+});
