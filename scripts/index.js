@@ -90,12 +90,19 @@ function closePopup(targetElement) {
 }
 
 
-function createCard(cardName, cardLink) {
+function getCardData(nameInput, linkInput) { 
+  return { 
+    name: nameInput.value, 
+    link: linkInput.value 
+  };   
+} 
+
+function createCard(cardData) {
   const cardElement = cardTemplateItemElement.cloneNode(true);
   const cardImgElement = cardElement.querySelector('.card__img');
-  cardImgElement.src = cardLink;
-  cardImgElement.alt = cardName;
-  cardElement.querySelector('.card__title').textContent = cardName;
+  cardImgElement.src = cardData.link;
+  cardImgElement.alt = cardData.name;
+  cardElement.querySelector('.card__title').textContent = cardData.name;
   return cardElement;
 }
 
@@ -126,7 +133,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 function handleCardFormSubmit(evt) {
-  const card = createCard(inputCardNameElement.value, inputCardLinkElement.value);
+  const card = createCard(getCardData(inputCardNameElement, inputCardLinkElement));
   prependCard(card, cardsListElement);
   closePopup(evt.target);
   cardFormElement.reset();
@@ -135,7 +142,7 @@ function handleCardFormSubmit(evt) {
 
 
 /* ----------- default cards ----------- */
-cardsData.forEach(card => prependCard(createCard(card.name, card.link), cardsListElement));
+cardsData.forEach(card => prependCard(createCard(card), cardsListElement));
 /* ----------- ----- ----------- */
 
 setProfileInfoToTheInputs();
