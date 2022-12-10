@@ -19,9 +19,9 @@ const formsConfig = {
 }
 
 
-// Если потребуется в функции enableValidation навесить валидацию сразу на все формы
-/*
-const formsConfig = {
+/** Если потребуется в функции enableValidation навесить валидацию сразу на все формы
+ * 
+ * const formsConfig = {
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__submit-btn',
