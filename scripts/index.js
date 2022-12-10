@@ -33,9 +33,10 @@ const imgHeadingElement  = photoPopupElement.querySelector('.popup__img-heading'
 
 
 function getProfileInfo() {
-  const profileInfo = {};
-  profileInfo.userName = userNameElement.textContent;
-  profileInfo.userJob = userJobElement.textContent;
+  const profileInfo = {
+    userName: userNameElement.textContent,
+    userJob: userJobElement.textContent
+  };
   return profileInfo;
 }
 
