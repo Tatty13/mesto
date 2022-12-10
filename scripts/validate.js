@@ -68,9 +68,10 @@ function enableValidation(config) {
 }
 
 
-//валидацию сразу на все формы
-/*
-function enableValidation(config) {
+
+/** валидацию сразу на все формы 
+ *  
+ * function enableValidation(config) {
   const {formSelector, inputSelector, submitButtonSelector, ...restConfig} = config;
 
   const forms = [...document.querySelectorAll(formSelector)];
@@ -83,7 +84,6 @@ function enableValidation(config) {
     setEventListeners(formElement, inputList, submitBtnElement, restConfig);
   });
 }
-enableValidation(formsConfig)
 */
 
-export default enableValidation;
+export {makeSubmitBtnDisabled, enableValidation};

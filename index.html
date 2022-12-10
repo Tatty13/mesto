@@ -38,10 +38,14 @@
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="form form_type_edit-profile" action="#" name="editProfile" novalidate>
-        <input class="form__input form__input_content_name" type="text" name="profile-name" placeholder="Введите имя" minlength="2" maxlength="40" required>
-        <span class="form__input-error profile-name-input-error"></span>
-        <input class="form__input form__input_content_job" type="text" name="profile-job" minlength="2" maxlength="200" placeholder="Введите род деятельности" required>
-        <span class="form__input-error profile-job-input-error"></span>
+        <label>
+          <input class="form__input form__input_content_name" type="text" name="profile-name" placeholder="Введите имя" minlength="2" maxlength="40" required>
+          <span class="form__input-error profile-name-input-error"></span>
+        </label>
+        <label>
+          <input class="form__input form__input_content_job" type="text" name="profile-job" minlength="2" maxlength="200" placeholder="Введите род деятельности" required>
+          <span class="form__input-error profile-job-input-error"></span>
+        </label>
         <button class="form__submit-btn" type="submit" name="submit-btn">Сохранить</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>
@@ -52,10 +56,14 @@
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <form class="form form_type_add-card" action="#" name="addCard" novalidate>
-        <input class="form__input form__input_content_card-name" type="text" name="card-name" placeholder="Название" minlength="2" maxlength="30" required>
-        <span class="form__input-error card-name-input-error"></span>
-        <input class="form__input form__input_content_card-link" type="url" name="card-link" placeholder="Ссылка на картинку" required>
-        <span class="form__input-error card-link-input-error"></span>
+        <label>
+          <input class="form__input form__input_content_card-name" type="text" name="card-name" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="form__input-error card-name-input-error"></span>
+        </label>
+        <label>
+          <input class="form__input form__input_content_card-link" type="url" name="card-link" placeholder="Ссылка на картинку" required>
+          <span class="form__input-error card-link-input-error"></span>
+        </label>
         <button class="form__submit-btn" type="submit" name="submit-btn">Создать</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="Закрыть"></button>

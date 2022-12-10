@@ -3,6 +3,7 @@
   min-height: 192px;
   display: flex;
   flex-direction: column;
+  font-size: 0;
 }
 
 @media screen and (max-width: 698px) {
