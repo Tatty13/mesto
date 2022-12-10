@@ -10,6 +10,13 @@ const userJobElement = profileInfoElement.querySelector('.profile__desc');
 const cardsListElement = document.querySelector('.cards__list');
 const cardTemplateItemElement = document.querySelector('.card-template').content.querySelector('.card');
 
+const profileEditBtn = profileInfoElement.querySelector('.profile__edit-btn'); 
+const cardAddBtn = document.querySelector('.profile__add-btn'); 
+const closePopupBtns = document.querySelectorAll('.popup__close-btn');
+
+/** -------- all popups --------  */
+const popups = document.querySelectorAll('.popup');
+
 /** -------- profile popup -------- */
 const profilePopupElement = document.querySelector('.popup_content_edit-profile');
 const profileEditFormElement =  profilePopupElement.querySelector('.form_type_edit-profile');
@@ -172,21 +179,11 @@ cardsListElement.addEventListener('click', (evt) => {
 })
 
 
-document.addEventListener('click', (evt) => {
-  const targetElement = evt.target;
+profileEditBtn.addEventListener('click', openProfilePopup); 
+cardAddBtn.addEventListener('click', openCardPopup); 
 
-  if (targetElement.classList.contains('popup__close-btn') || targetElement.classList.contains('popup')) {
-    closePopup(targetElement);
-    return;
-  }
+closePopupBtns.forEach(btn => btn.addEventListener('click', (evt) => closePopup(evt.target))); 
 
-  if (targetElement.classList.contains('profile__edit-btn')) {
-    openProfilePopup();
-    return;
-  }
-
-  if (targetElement.classList.contains('profile__add-btn')) {
-    openCardPopup();
-    return;
-  }
-})
+popups.forEach(popupElement => popupElement.addEventListener('click', (evt) => {
+  if (evt.target === popupElement) closePopup(popupElement);
+}));
