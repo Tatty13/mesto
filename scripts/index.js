@@ -66,8 +66,8 @@ function toggleLikeBtn(targetElement) {
   targetElement.classList.toggle('card__like-btn_active');
 }
 
-function deleteCard(targetElement) {
-  targetElement.closest('.card').remove();
+function deleteCard(card) {
+  card.remove();
 }
 
 
@@ -75,13 +75,6 @@ function setImgInfo(targetImg, targetHeading, currImg) {
   targetImg.src = currImg.src;
   targetImg.alt = currImg.alt;
   targetHeading.textContent = currImg.alt;
-}
-
-
-function handleEscapeKey(evt) {
-  if (evt.code !== 'Escape') return;
-  const popupElement = document.querySelector('.popup_open');
-  closePopup(popupElement);
 }
 
 
@@ -94,6 +87,13 @@ function closePopup(targetElement) {
   const popupElement = targetElement.closest('.popup');
   popupElement.classList.remove('popup_open');
   document.removeEventListener('keydown', handleEscapeKey);
+}
+
+
+function handleEscapeKey(evt) {
+  if (evt.code !== 'Escape') return;
+  const popupElement = document.querySelector('.popup_open');
+  closePopup(popupElement);
 }
 
 
@@ -168,7 +168,8 @@ cardsListElement.addEventListener('click', (evt) => {
   }
 
   if (targetElement.classList.contains('card__delete-btn')) {
-    deleteCard(targetElement);
+    const card = targetElement.closest('.card');
+    deleteCard(card);
     return;
   }
 
