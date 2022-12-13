@@ -3,7 +3,7 @@ function isInputValid(inputElement) {
 }
 
 function isFormValid(inputList) {
-  return !inputList.some(input => !isInputValid(input));
+  return inputList.every(input => isInputValid(input));
 }
 
 
