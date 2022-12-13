@@ -167,7 +167,7 @@ cardAddBtn.addEventListener('click', openCardPopup);
 profileEditFormElement.addEventListener('submit', handleProfileFormSubmit);
 cardFormElement.addEventListener('submit', handleCardFormSubmit);
 
-popups.forEach(popupElement => popupElement.addEventListener('click', (evt) => {
+popups.forEach(popupElement => popupElement.addEventListener('mousedown', (evt) => {
   if (evt.target === popupElement || evt.target.classList.contains('popup__close-btn')) {
     closePopup(popupElement);
     clearInputErrors(popupElement, 'form__input-error_active');
