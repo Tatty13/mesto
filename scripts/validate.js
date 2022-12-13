@@ -49,7 +49,7 @@ function setEventListeners(formElement, inputList, submitBtnElement, restConfig)
   toggleSubmitBtnState(submitBtnElement, inactiveButtonClass, inputList);
 
   inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
+    inputElement.addEventListener('input', () => {
       toggleInputError(formElement, inputElement, errorClass, inputErrorClassPrefix);
       toggleSubmitBtnState(submitBtnElement, inactiveButtonClass, inputList);
     });
@@ -87,3 +87,4 @@ function enableValidation(config) {
 */
 
 export {makeSubmitBtnDisabled, makeSubmitBtnActive, enableValidation};
+
