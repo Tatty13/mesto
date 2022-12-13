@@ -1,6 +1,6 @@
 import cardsData from './cardsData.js';
 import formsConfig from './formsConfigData.js';
-import {makeSubmitBtnDisabled, enableValidation} from './validate.js';
+import {makeSubmitBtnDisabled, makeSubmitBtnActive, enableValidation} from './validate.js';
 
 
 const profileInfoElement = document.querySelector('.profile__info');
@@ -21,6 +21,7 @@ const profilePopupElement = document.querySelector('.popup_content_edit-profile'
 const profileEditFormElement =  profilePopupElement.querySelector('.form_type_edit-profile');
 const inputProfileNameElement = profileEditFormElement.querySelector('.form__input_content_name');
 const inputJobElement = profileEditFormElement.querySelector('.form__input_content_job');
+const profileFormSubmitBtmElement = profileEditFormElement.querySelector('.form__submit-btn');
 /* -------- -------------- -------- */
 
 /** -------- add-card popup -------- */
@@ -77,10 +78,17 @@ function setImgInfo(targetImg, targetHeading, currImg) {
 }
 
 
+function clearInputErrors(popupElement, errorClass) {
+  const errorElements = popupElement.querySelectorAll(`.${errorClass}`);
+  errorElements.forEach(error => error.textContent = '');
+}
+
+
 function handleEscapeKey(evt) {
   if (evt.code !== 'Escape') return;
   const popupElement = document.querySelector('.popup_open');
   closePopup(popupElement);
+  clearInputErrors(popupElement, 'form__input-error_active');
 }
 
 function openPopup(popupElement) {
@@ -117,6 +125,8 @@ function prependCard(card, cardContainer) {
 
 function openProfilePopup() {
   setProfileInfoToTheInputs();
+  if (profileFormSubmitBtmElement.classList.contains(`${formsConfig.editProfile.inactiveButtonClass}`))
+  makeSubmitBtnActive(profileFormSubmitBtmElement, formsConfig.editProfile.inactiveButtonClass);
   openPopup(profilePopupElement);
 }
 
@@ -146,8 +156,7 @@ function handleCardFormSubmit() {
 /** default cards */
 cardsData.forEach(card => prependCard(createCard(card), cardsListElement));
 
-/** call setProfileInfoToTheInputs function to make submit btn in the profile popup active for the first popup opening */
-setProfileInfoToTheInputs();
+
 enableValidation(formsConfig.editProfile);
 enableValidation(formsConfig.addCard);
 
@@ -159,7 +168,10 @@ profileEditFormElement.addEventListener('submit', handleProfileFormSubmit);
 cardFormElement.addEventListener('submit', handleCardFormSubmit);
 
 popups.forEach(popupElement => popupElement.addEventListener('click', (evt) => {
-  if (evt.target === popupElement || evt.target.classList.contains('popup__close-btn')) closePopup(popupElement);
+  if (evt.target === popupElement || evt.target.classList.contains('popup__close-btn')) {
+    closePopup(popupElement);
+    clearInputErrors(popupElement, 'form__input-error_active');
+  }
 }));
 
 

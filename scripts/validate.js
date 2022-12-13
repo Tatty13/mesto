@@ -86,4 +86,4 @@ function enableValidation(config) {
 }
 */
 
-export {makeSubmitBtnDisabled, enableValidation};
+export {makeSubmitBtnDisabled, makeSubmitBtnActive, enableValidation};
