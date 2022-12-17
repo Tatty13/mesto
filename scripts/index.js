@@ -1,6 +1,6 @@
 import cardsData from './cardsData.js';
 import formsConfig from './formsConfigData.js';
-import {makeSubmitBtnDisabled, makeSubmitBtnActive, enableValidation} from './validate.js';
+import {enableValidation} from './validate.js';
 
 
 const profileInfoElement = document.querySelector('.profile__info');
@@ -125,8 +125,6 @@ function prependCard(card, cardContainer) {
 
 function openProfilePopup() {
   setProfileInfoToTheInputs();
-  if (profileFormSubmitBtmElement.classList.contains(`${formsConfig.editProfile.inactiveButtonClass}`))
-  makeSubmitBtnActive(profileFormSubmitBtmElement, formsConfig.editProfile.inactiveButtonClass);
   openPopup(profilePopupElement);
 }
 
@@ -150,7 +148,6 @@ function handleCardFormSubmit() {
   const card = createCard(getCardData(inputCardNameElement, inputCardLinkElement));
   prependCard(card, cardsListElement);
   closePopup(cardPopupElement);
-  makeSubmitBtnDisabled(cardFormSubmitBtmElement, formsConfig.addCard.inactiveButtonClass);
 }
 
 /** default cards */

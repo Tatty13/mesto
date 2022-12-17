@@ -48,6 +48,12 @@ function setEventListeners(formElement, inputList, submitBtnElement, restConfig)
 
   toggleSubmitBtnState(submitBtnElement, inactiveButtonClass, inputList);
 
+  formElement.addEventListener('submit', (evt) => evt.preventDefault());
+
+  formElement.addEventListener('reset', () => {
+    setTimeout(() => toggleSubmitBtnState(submitBtnElement, inactiveButtonClass, inputList), 0)
+  })
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       toggleInputError(formElement, inputElement, errorClass, inputErrorClassPrefix);
@@ -63,7 +69,6 @@ function enableValidation(config) {
   const inputList = [...formElement.querySelectorAll(inputSelector)];
   const submitBtnElement = formElement.querySelector(submitButtonSelector);
 
-  formElement.addEventListener('submit', (evt) => evt.preventDefault());
   setEventListeners(formElement, inputList, submitBtnElement, restConfig);
 }
 
@@ -86,5 +91,5 @@ function enableValidation(config) {
 }
 */
 
-export {makeSubmitBtnDisabled, makeSubmitBtnActive, enableValidation};
+export {enableValidation};
 
