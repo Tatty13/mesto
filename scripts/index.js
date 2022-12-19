@@ -1,7 +1,8 @@
 import {cardsListElement, profileEditBtn, cardAddBtn, 
   popups, 
   profilePopupElement, profileEditFormElement, 
-  cardPopupElement, cardFormElement, inputCardNameElement, inputCardLinkElement} from './constants.js';
+  cardPopupElement, cardFormElement, inputCardNameElement, inputCardLinkElement,
+  photoPopupElement, imgElement, imgHeadingElement} from './constants.js';
 import {updateProfileInfo, setProfileInfoToTheInputs, getCardData, clearInputErrors, prependCard, openPopup, closePopup} from './utils.js';
 
 import cardsData from './cardsData.js';
@@ -25,9 +26,16 @@ function handleProfileFormSubmit() {
   closePopup(profilePopupElement);
 }
 
+function handleCardImgClick(name, link) {
+  imgElement.src = link;
+  imgElement.alt = name;
+  imgHeadingElement.textContent = name;
+  openPopup(photoPopupElement);
+}
+
 function handleCardFormSubmit() {
   const cardData = getCardData(inputCardNameElement, inputCardLinkElement);
-  const card = new Card(cardData, '.card-template');
+  const card = new Card(cardData, '.card-template', handleCardImgClick);
   const cardElem = card.generate();
   prependCard(cardElem, cardsListElement);
   closePopup(cardPopupElement);
@@ -36,7 +44,7 @@ function handleCardFormSubmit() {
 
 /** create default cards */
 cardsData.forEach(data => {
-  const card = new Card(data, '.card-template');
+  const card = new Card(data, '.card-template', handleCardImgClick);
   const cardElem = card.generate();
   prependCard(cardElem, cardsListElement)
 });
