@@ -3,15 +3,15 @@ import {cardsListElement, profileEditBtn, cardAddBtn,
   profilePopupElement, profileEditFormElement, 
   cardPopupElement, cardFormElement, inputCardNameElement, inputCardLinkElement,
   photoPopupElement, imgElement, imgHeadingElement} from './constants.js';
-import {updateProfileInfo, setProfileInfoToTheInputs, getCardData, clearInputErrors, prependCard, openPopup, closePopup} from './utils.js';
+import {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard, prependCard, openPopup, closePopup} from './utils.js';
 
 import cardsData from './cardsData.js';
-import Card from './card.js';
 import formsConfig from './formsConfigData.js';
 import FormValidator from './formValidator.js';
 
 
 function openProfilePopup() {
+  profileEditFormElement.reset();
   setProfileInfoToTheInputs();
   openPopup(profilePopupElement);
 }
@@ -35,8 +35,7 @@ function handleCardImgClick(name, link) {
 
 function handleCardFormSubmit() {
   const cardData = getCardData(inputCardNameElement, inputCardLinkElement);
-  const card = new Card(cardData, '.card-template', handleCardImgClick);
-  const cardElem = card.generate();
+  const cardElem = createCard(cardData, '.card-template', handleCardImgClick);
   prependCard(cardElem, cardsListElement);
   closePopup(cardPopupElement);
 }
@@ -44,8 +43,7 @@ function handleCardFormSubmit() {
 
 /** create default cards */
 cardsData.forEach(data => {
-  const card = new Card(data, '.card-template', handleCardImgClick);
-  const cardElem = card.generate();
+  const cardElem = createCard(data, '.card-template', handleCardImgClick);
   prependCard(cardElem, cardsListElement)
 });
 
@@ -73,6 +71,5 @@ cardFormElement.addEventListener('submit', handleCardFormSubmit);
 popups.forEach(popupElement => popupElement.addEventListener('mousedown', (evt) => {
   if (evt.target === popupElement || evt.target.classList.contains('popup__close-btn')) {
     closePopup(popupElement);
-    clearInputErrors(popupElement, 'form__input-error_active');
   }
 }));

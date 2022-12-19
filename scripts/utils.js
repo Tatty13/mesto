@@ -1,4 +1,5 @@
 import {userNameElement, userJobElement, inputProfileNameElement, inputJobElement} from './constants.js';
+import Card from './card.js';
 
 
 function getProfileInfo() {
@@ -31,21 +32,21 @@ function getCardData(nameInput, linkInput) {
   };   
 } 
 
+function createCard(cardData, templateSelector, handleCardImgClick) {
+  const card = new Card(cardData, templateSelector, handleCardImgClick);
+  const cardElem = card.generate();
+  return cardElem;
+}
+
 function prependCard(card, cardContainer) {
   cardContainer.prepend(card);
 }
 
 
-function clearInputErrors(popupElement, errorClass) {
-  const errorElements = popupElement.querySelectorAll(`.${errorClass}`);
-  errorElements.forEach(error => error.textContent = '');
-}
-
 function handleEscapeKey(evt) {
   if (evt.code !== 'Escape') return;
   const popupElement = document.querySelector('.popup_open');
   closePopup(popupElement);
-  clearInputErrors(popupElement, 'form__input-error_active');
 }
 
 
@@ -60,4 +61,4 @@ function closePopup(popupElement) {
 }
 
 
-export {updateProfileInfo, setProfileInfoToTheInputs, getCardData, clearInputErrors, prependCard, openPopup, closePopup};
+export {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard, prependCard, openPopup, closePopup};
