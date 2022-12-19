@@ -51,10 +51,15 @@ class FormValidator {
       this._makeSubmitBtnDisabled(this._submitBtnElem);
   }
 
+  _resetValidation() {
+    this._toggleSubmitBtnState();
+    this._inputList.forEach(inputElement => this._hideInputError(inputElement));
+  }
+
   _setEventListeners() {
     this._formElement.addEventListener('submit', (evt) => evt.preventDefault());
     this._formElement.addEventListener('reset', () => {
-      setTimeout(() => this._toggleSubmitBtnState(), 0)
+      setTimeout(() => this._resetValidation(), 0)
     })
   
     this._inputList.forEach((inputElement) => {
