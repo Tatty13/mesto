@@ -2,7 +2,8 @@ import {openPopup, closePopup, clearInputErrors} from './utils.js';
 import cardsData from './cardsData.js';
 import Card from './card.js';
 import formsConfig from './formsConfigData.js';
-import {enableValidation} from './validate.js';
+import FormValidator from './formValidator.js';
+
 
 
 const profileInfoElement = document.querySelector('.profile__info');
@@ -100,8 +101,18 @@ cardsData.forEach(data => {
 });
 
 
-enableValidation(formsConfig.editProfile);
-enableValidation(formsConfig.addCard);
+/** enable validation for all forms with '.form' selector */
+document.querySelectorAll(formsConfig.formSelector).forEach(form => {
+  const formValidator = new FormValidator(formsConfig, form);
+  formValidator.enableValidation();
+});
+
+/** enable validation for each form separately
+ * const profileFormValidator = new FormValidator(formsConfig, profileEditFormElement);
+ * profileFormValidator.enableValidation();
+ * const cardFormValidator = new FormValidator(formsConfig, cardFormElement);
+ * cardFormValidator.enableValidation();
+ */
 
 
 profileEditBtn.addEventListener('click', openProfilePopup); 
