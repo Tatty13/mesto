@@ -1,11 +1,9 @@
-import {photoPopupElement, imgElement, imgHeadingElement} from './constants.js';
-import {openPopup} from './utils.js';
-
 class Card {
-  constructor(data, templateSelector) {
-    this._templateSelector = templateSelector; //'.card-template'
+  constructor(data, templateSelector, handleCardImgClick) {
+    this._templateSelector = templateSelector;
     this._link = data.link;
     this._name = data.name;
+    this._handleCardImgClick = handleCardImgClick;
   }
 
   _getElement() {
@@ -22,19 +20,8 @@ class Card {
     this._element.remove();
   }
 
-  _setImgInfo(targetImg, targetHeading, currImg) {
-    targetImg.src = currImg.src;
-    targetImg.alt = currImg.alt;
-    targetHeading.textContent = currImg.alt;
-  }
-
-  _openImgPopup(targetElement) {
-    this._setImgInfo(imgElement, imgHeadingElement, targetElement);
-    openPopup(photoPopupElement);
-  }
-
   _setEventListaners() {
-    this._cardImgElement.addEventListener('click', () => this._openImgPopup(this._cardImgElement));
+    this._cardImgElement.addEventListener('click', () => this._handleCardImgClick(this._name, this._link));
 
     const likeBtn = this._element.querySelector('.card__like-btn');
     likeBtn.addEventListener('click', () => this._toggleLikeBtn(likeBtn));
