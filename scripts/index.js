@@ -48,18 +48,27 @@ cardsData.forEach(data => {
 });
 
 
-/** enable validation for all forms with '.form' selector */
+/** enable validation for all forms with '.form' selector when _resetValidation method is private*/
 document.querySelectorAll(formsConfig.formSelector).forEach(form => {
   const formValidator = new FormValidator(formsConfig, form);
   formValidator.enableValidation();
 });
 
-/** enable validation for each form separately
- * const profileFormValidator = new FormValidator(formsConfig, profileEditFormElement);
- * profileFormValidator.enableValidation();
- * const cardFormValidator = new FormValidator(formsConfig, cardFormElement);
- * cardFormValidator.enableValidation();
- */
+
+/** enable validation for all forms with '.form' selector when resetValidation method is public
+ * 
+const formValidators = {};
+function enableValidation(config) {
+  const formList = [...document.querySelectorAll(config.formSelector)];
+  formList.forEach(form => {
+    const formValidator = new FormValidator(config, form);
+    const formName = form.name;
+    formValidators[formName] = formValidator;
+    formValidator.enableValidation();
+  });
+}
+enableValidation(formsConfig);
+*/
 
 
 profileEditBtn.addEventListener('click', openProfilePopup); 
