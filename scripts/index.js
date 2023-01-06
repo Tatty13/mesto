@@ -7,7 +7,7 @@ import {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard, p
 
 import cardsData from './cardsData.js';
 import formsConfig from './formsConfigData.js';
-import FormValidator from './formValidator.js';
+import FormValidator from './FormValidator.js';
 
 
 function openProfilePopup() {

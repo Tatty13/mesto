@@ -1,5 +1,5 @@
 import {userNameElement, userJobElement, inputProfileNameElement, inputJobElement} from './constants.js';
-import Card from './card.js';
+import Card from './Card.js';
 
 
 function getProfileInfo() {
