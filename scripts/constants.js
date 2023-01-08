@@ -18,15 +18,8 @@ const inputCardNameElement = cardFormElement.querySelector('.form__input_content
 const inputCardLinkElement = cardFormElement.querySelector('.form__input_content_card-link');
 
 
-/* -------- photo popup --------  */
-const photoPopupElement = document.querySelector('.popup_content_photo');
-const imgElement = photoPopupElement.querySelector('.popup__img');
-const imgHeadingElement  = photoPopupElement.querySelector('.popup__img-heading');
-
-
 export {userNameElement, userJobElement, 
   profileEditBtn, cardAddBtn,
   profileEditFormElement, inputProfileNameElement, inputJobElement,
   cardFormElement, 
-  inputCardNameElement, inputCardLinkElement,
-  imgElement, imgHeadingElement};
+  inputCardNameElement, inputCardLinkElement};
