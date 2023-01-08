@@ -39,22 +39,4 @@ function createCard(cardData, templateSelector, handleCardImgClick) {
 }
 
 
-function handleEscapeKey(evt) {
-  if (evt.code !== 'Escape') return;
-  const popupElement = document.querySelector('.popup_open');
-  closePopup(popupElement);
-}
-
-
-function openPopup(popupElement) {
-  popupElement.classList.add('popup_open');
-  document.addEventListener('keydown', handleEscapeKey);
-}
-
-function closePopup(popupElement) {
-  popupElement.classList.remove('popup_open');
-  document.removeEventListener('keydown', handleEscapeKey);
-}
-
-
-export {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard, openPopup, closePopup};
+export {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard};
