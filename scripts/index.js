@@ -1,10 +1,11 @@
-import {cardsListElement, profileEditBtn, cardAddBtn, 
+import {profileEditBtn, cardAddBtn, 
   popups, 
   profilePopupElement, profileEditFormElement, 
   cardPopupElement, cardFormElement, inputCardNameElement, inputCardLinkElement,
   photoPopupElement, imgElement, imgHeadingElement} from './constants.js';
-import {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard, prependCard, openPopup, closePopup} from './utils.js';
+import {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard, openPopup, closePopup} from './utils.js';
 
+import Section from './Section.js';
 import cardsData from './cardsData.js';
 import formsConfig from './formsConfigData.js';
 import FormValidator from './FormValidator.js';
@@ -33,19 +34,27 @@ function handleCardImgClick(name, link) {
   openPopup(photoPopupElement);
 }
 
+/**
+ * @param {object} cardData
+ * @param {string} cardData.link - image url
+ * @param {string} cardData.name - image title
+ */
+function renderCards(cardData) {
+  const cardElem = createCard(cardData, '.card-template', handleCardImgClick);
+  this.addItem(cardElem);
+}
+
 function handleCardFormSubmit() {
   const cardData = getCardData(inputCardNameElement, inputCardLinkElement);
-  const cardElem = createCard(cardData, '.card-template', handleCardImgClick);
-  prependCard(cardElem, cardsListElement);
+  const cardsSection = new Section({items: [cardData], renderer: renderCards}, '.cards__list');
+  cardsSection.renderItems();
   closePopup(cardPopupElement);
 }
 
 
 /** create default cards */
-cardsData.forEach(data => {
-  const cardElem = createCard(data, '.card-template', handleCardImgClick);
-  prependCard(cardElem, cardsListElement)
-});
+const defaultCards = new Section({items: cardsData, renderer: renderCards}, '.cards__list');
+defaultCards.renderItems();
 
 
 /** enable validation for all forms with '.form' selector when _resetValidation method is private*/

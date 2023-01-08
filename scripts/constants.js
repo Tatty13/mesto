@@ -2,8 +2,6 @@ const profileInfoElement = document.querySelector('.profile__info');
 const userNameElement = profileInfoElement.querySelector('.profile__name');
 const userJobElement = profileInfoElement.querySelector('.profile__desc');
 
-const cardsListElement = document.querySelector('.cards__list');
-
 const profileEditBtn = profileInfoElement.querySelector('.profile__edit-btn'); 
 const cardAddBtn = document.querySelector('.profile__add-btn'); 
 
@@ -33,7 +31,7 @@ const imgHeadingElement  = photoPopupElement.querySelector('.popup__img-heading'
 
 
 export {userNameElement, userJobElement, 
-  cardsListElement, profileEditBtn, cardAddBtn,
+  profileEditBtn, cardAddBtn,
   popups,
   profilePopupElement, profileEditFormElement, inputProfileNameElement, inputJobElement,
   cardPopupElement, cardFormElement, inputCardNameElement, inputCardLinkElement,

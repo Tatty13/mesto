@@ -38,10 +38,6 @@ function createCard(cardData, templateSelector, handleCardImgClick) {
   return cardElem;
 }
 
-function prependCard(card, cardContainer) {
-  cardContainer.prepend(card);
-}
-
 
 function handleEscapeKey(evt) {
   if (evt.code !== 'Escape') return;
@@ -61,4 +57,4 @@ function closePopup(popupElement) {
 }
 
 
-export {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard, prependCard, openPopup, closePopup};
+export {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard, openPopup, closePopup};
