@@ -1,14 +1,16 @@
 import {profileEditBtn, cardAddBtn} from './constants.js';
-import {updateProfileInfo, setProfileInfoToTheInputs, createCard} from './utils.js';
+import {setProfileInfoToTheInputs, createCard} from './utils.js';
 import cardsData from './cardsData.js';
 import formsConfig from './formsConfigData.js';
 
 import Section from './Section.js';
+import UserInfo from './UserInfo.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import FormValidator from './FormValidator.js';
 
 
+const userInfo = new UserInfo({nameSelector: '.profile__name', jobSelector: '.profile__desc'});
 
 const profilePopup = new PopupWithForm('.popup_content_edit-profile', handleProfileFormSubmit);
 profilePopup.setEventListeners();
@@ -17,7 +19,7 @@ cardPopup.setEventListeners();
 
 
 function openProfilePopup() {
-  setProfileInfoToTheInputs();
+  setProfileInfoToTheInputs(userInfo.getUserInfo());
   profilePopup.open();
 }
 
@@ -32,7 +34,7 @@ function openCardPopup() {
  * @param {string} inputValues.job
  */
 function handleProfileFormSubmit({'profile-name': name, 'profile-job': job}) {
-  updateProfileInfo(name, job);
+  userInfo.setUserInfo(name, job);
   profilePopup.close();
 }
 
