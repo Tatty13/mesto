@@ -42,10 +42,9 @@ function handleProfileFormSubmit({'profile-name': name, 'profile-job': job}) {
 /**
  * @param {string} name - image title
  * @param {string} link - image url
- * @todo optimize obj {name, link}
  */
 function handleCardImgClick(name, link) {
-  const imagePopup = new PopupWithImage({name: name, link: link}, '.popup_content_photo');
+  const imagePopup = new PopupWithImage({name, link}, '.popup_content_photo');
   imagePopup.setEventListeners();
   imagePopup.open();
 }

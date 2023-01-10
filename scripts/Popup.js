@@ -8,8 +8,20 @@ class Popup {
 
   _handleEscClose(evt) {
     if (evt.code === 'Escape')
-      this.close.call(this);
+      this.close();
   }
+
+  // ----------------- version 2 -------------------- //
+  // _handleEscClose() {
+  //   const closeByEsc = (evt) => {
+  //     if (evt.code === 'Escape') {
+  //       this.close();
+  //       document.removeEventListener('keydown', closeByEsc);
+  //     }
+  //   }
+  //   document.addEventListener('keydown', closeByEsc);
+  // }
+  // ------------------------------------------------- //
 
   setEventListeners() {
     this._popup.addEventListener('mousedown', (evt) => {
@@ -20,9 +32,9 @@ class Popup {
   }
 
   open() {
-    const currThis = this;
     this._popup.classList.add('popup_open');
-    document.addEventListener('keydown', this._handleEscClose.bind(currThis));
+    document.addEventListener('keydown', this._handleEscClose.bind(this));
+    // this._handleEscClose();
   }
 
   close() {
