@@ -1,42 +1,46 @@
-import {profileEditBtn, cardAddBtn, 
-  profileEditFormElement, 
-  cardFormElement, 
-  inputCardNameElement, inputCardLinkElement} from './constants.js';
-import {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard} from './utils.js';
-
-import Section from './Section.js';
-import Popup from './Popup.js';
-import PopupWithImage from './PopupWithImage.js';
-import FormValidator from './FormValidator.js';
+import {profileEditBtn, cardAddBtn} from './constants.js';
+import {updateProfileInfo, setProfileInfoToTheInputs, createCard} from './utils.js';
 import cardsData from './cardsData.js';
 import formsConfig from './formsConfigData.js';
 
+import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+import FormValidator from './FormValidator.js';
 
-const profilePopup = new Popup('.popup_content_edit-profile');
+
+
+const profilePopup = new PopupWithForm('.popup_content_edit-profile', handleProfileFormSubmit);
 profilePopup.setEventListeners();
-const cardPopup = new Popup('.popup_content_add-card');
+const cardPopup = new PopupWithForm('.popup_content_add-card', handleCardFormSubmit);
 cardPopup.setEventListeners();
 
 
 function openProfilePopup() {
-  profileEditFormElement.reset();
   setProfileInfoToTheInputs();
   profilePopup.open();
 }
 
 function openCardPopup() {
-  cardFormElement.reset();
   cardPopup.open();
 }
 
-function handleProfileFormSubmit() {
-  updateProfileInfo();
+
+/**
+ * @param {object} inputValues - key - input-name: value - input.value
+ * @param {string} inputValues.name
+ * @param {string} inputValues.job
+ */
+function handleProfileFormSubmit({'profile-name': name, 'profile-job': job}) {
+  updateProfileInfo(name, job);
   profilePopup.close();
 }
+
 
 /**
  * @param {string} name - image title
  * @param {string} link - image url
+ * @todo optimize obj {name, link}
  */
 function handleCardImgClick(name, link) {
   const imagePopup = new PopupWithImage({name: name, link: link}, '.popup_content_photo');
@@ -54,9 +58,8 @@ function renderCards(cardData) {
   this.addItem(cardElem);
 }
 
-function handleCardFormSubmit() {
-  const cardData = getCardData(inputCardNameElement, inputCardLinkElement);
-  const cardsSection = new Section({items: [cardData], renderer: renderCards}, '.cards__list');
+function handleCardFormSubmit({'card-name': name, 'card-link': link}) {
+  const cardsSection = new Section({items: [{name, link}], renderer: renderCards}, '.cards__list');
   cardsSection.renderItems();
   cardPopup.close();
 }
@@ -92,6 +95,3 @@ enableValidation(formsConfig);
 
 profileEditBtn.addEventListener('click', openProfilePopup); 
 cardAddBtn.addEventListener('click', openCardPopup); 
-
-profileEditFormElement.addEventListener('submit', handleProfileFormSubmit);
-cardFormElement.addEventListener('submit', handleCardFormSubmit);

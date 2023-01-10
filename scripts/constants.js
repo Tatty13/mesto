@@ -12,14 +12,6 @@ const inputProfileNameElement = profileEditFormElement.querySelector('.form__inp
 const inputJobElement = profileEditFormElement.querySelector('.form__input_content_job');
 
 
-/* -------- add-card popup -------- */
-const cardFormElement = document.querySelector('.form_type_add-card');
-const inputCardNameElement = cardFormElement.querySelector('.form__input_content_card-name');
-const inputCardLinkElement = cardFormElement.querySelector('.form__input_content_card-link');
-
-
-export {userNameElement, userJobElement, 
-  profileEditBtn, cardAddBtn,
-  profileEditFormElement, inputProfileNameElement, inputJobElement,
-  cardFormElement, 
-  inputCardNameElement, inputCardLinkElement};
+export {userNameElement, userJobElement,
+  inputProfileNameElement, inputJobElement, 
+  profileEditBtn, cardAddBtn};

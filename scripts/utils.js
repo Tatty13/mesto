@@ -10,10 +10,13 @@ function getProfileInfo() {
   return profileInfo;
 }
 
-function updateProfileInfo() {
-  const name = inputProfileNameElement.value;
-  const job = inputJobElement.value;
 
+/**
+ * set values from the form inputs to the profile
+ * @param {string} name - user name
+ * @param {string} job - user job/occupation
+ */
+function updateProfileInfo(name, job) {
   userNameElement.textContent = name;
   userJobElement.textContent = job;
 }
@@ -25,13 +28,6 @@ function setProfileInfoToTheInputs() {
 }
 
 
-function getCardData(nameInput, linkInput) { 
-  return { 
-    name: nameInput.value, 
-    link: linkInput.value 
-  };   
-} 
-
 function createCard(cardData, templateSelector, handleCardImgClick) {
   const card = new Card(cardData, templateSelector, handleCardImgClick);
   const cardElem = card.generate();
@@ -39,4 +35,4 @@ function createCard(cardData, templateSelector, handleCardImgClick) {
 }
 
 
-export {updateProfileInfo, setProfileInfoToTheInputs, getCardData, createCard};
+export {updateProfileInfo, setProfileInfoToTheInputs, createCard};
