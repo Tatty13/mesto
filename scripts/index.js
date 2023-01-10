@@ -10,22 +10,8 @@ import PopupWithForm from './PopupWithForm.js';
 import FormValidator from './FormValidator.js';
 
 
+
 const userInfo = new UserInfo({nameSelector: '.profile__name', jobSelector: '.profile__desc'});
-
-const profilePopup = new PopupWithForm('.popup_content_edit-profile', handleProfileFormSubmit);
-profilePopup.setEventListeners();
-const cardPopup = new PopupWithForm('.popup_content_add-card', handleCardFormSubmit);
-cardPopup.setEventListeners();
-
-
-function openProfilePopup() {
-  setProfileInfoToTheInputs(userInfo.getUserInfo());
-  profilePopup.open();
-}
-
-function openCardPopup() {
-  cardPopup.open();
-}
 
 
 /**
@@ -37,6 +23,10 @@ function handleProfileFormSubmit({'profile-name': name, 'profile-job': job}) {
   userInfo.setUserInfo(name, job);
   profilePopup.close();
 }
+
+const profilePopup = new PopupWithForm('.popup_content_edit-profile', handleProfileFormSubmit);
+profilePopup.setEventListeners();
+
 
 
 /**
@@ -65,6 +55,10 @@ function handleCardFormSubmit({'card-name': name, 'card-link': link}) {
   cardPopup.close();
 }
 
+const cardPopup = new PopupWithForm('.popup_content_add-card', handleCardFormSubmit);
+cardPopup.setEventListeners();
+
+
 
 /** create default cards */
 const defaultCards = new Section({items: cardsData, renderer: renderCards}, '.cards__list');
@@ -92,6 +86,16 @@ function enableValidation(config) {
 }
 enableValidation(formsConfig);
 */
+
+
+function openProfilePopup() {
+  setProfileInfoToTheInputs(userInfo.getUserInfo());
+  profilePopup.open();
+}
+
+function openCardPopup() {
+  cardPopup.open();
+}
 
 
 profileEditBtn.addEventListener('click', openProfilePopup); 

@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-class PopupWithImage extends Popup{
+class PopupWithImage extends Popup {
   /**
    * @param {object} obj 
    * @param {string} obj.name - image title
