@@ -1,13 +1,13 @@
-import {profileEditBtn, cardAddBtn} from './constants.js';
-import {setProfileInfoToTheInputs, createCard} from './utils.js';
-import cardsData from './cardsData.js';
-import formsConfig from './formsConfigData.js';
+import {profileEditBtn, cardAddBtn} from '../utils/constants.js';
+import {setProfileInfoToTheInputs, createCard} from '../utils/utils.js';
+import cardsData from '../utils/cardsData.js';
+import formsConfig from '../utils/formsConfigData.js';
 
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import FormValidator from './FormValidator.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import FormValidator from '../components/FormValidator.js';
 
 
 

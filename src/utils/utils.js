@@ -1,5 +1,5 @@
 import {inputProfileNameElement, inputJobElement} from './constants.js';
-import Card from './Card.js';
+import Card from '../components/Card.js';
 
 
 /**
