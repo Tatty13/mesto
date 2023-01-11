@@ -49,6 +49,11 @@ function renderCards(cardData) {
   this.addItem(cardElem);
 }
 
+/**
+ * @param {object} cardData 
+ * @param {string} cardData.name - 'name' attribute value of input with image title
+ * @param {string} cardData.link - name' attribute value of input with image url
+ */
 function handleCardFormSubmit({'card-name': name, 'card-link': link}) {
   const cardsSection = new Section({items: [{name, link}], renderer: renderCards}, '.cards__list');
   cardsSection.renderItems();

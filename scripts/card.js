@@ -1,4 +1,9 @@
 class Card {
+  /**
+   * @param {object} data - objects with image data: name and link;
+   * @param {string} templateSelector - card template selector
+   * @param {function} handleCardImgClick 
+   */
   constructor(data, templateSelector, handleCardImgClick) {
     this._templateSelector = templateSelector;
     this._link = data.link;
@@ -6,12 +11,18 @@ class Card {
     this._handleCardImgClick = handleCardImgClick;
   }
 
+  /**
+   * @returns {HTMLElement} element with card structure
+   */
   _getElement() {
     return document.querySelector(this._templateSelector)
       .content.querySelector('.card')
       .cloneNode(true);
   }
 
+  /**
+   * @param {HTMLElement} likeBtnElement 
+   */
   _toggleLikeBtn(likeBtnElement) {
     likeBtnElement.classList.toggle('card__like-btn_active');
   }
@@ -31,6 +42,9 @@ class Card {
   }
 
 
+  /**
+   * @returns {HTMLElement} element with card structure, current data and eventListeners
+   */
   generate() {
     this._element = this._getElement();
 
