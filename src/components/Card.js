@@ -20,11 +20,8 @@ class Card {
       .cloneNode(true);
   }
 
-  /**
-   * @param {HTMLElement} likeBtnElement 
-   */
-  _toggleLikeBtn(likeBtnElement) {
-    likeBtnElement.classList.toggle('card__like-btn_active');
+  _toggleLikeBtn() {
+    this._likeBtn.classList.toggle('card__like-btn_active');
   }
 
   _deleteCard() {
@@ -34,11 +31,11 @@ class Card {
   _setEventListaners() {
     this._cardImgElement.addEventListener('click', () => this._handleCardImgClick(this._name, this._link));
 
-    const likeBtn = this._element.querySelector('.card__like-btn');
-    likeBtn.addEventListener('click', () => this._toggleLikeBtn(likeBtn));
+    this._likeBtn = this._element.querySelector('.card__like-btn');
+    this._likeBtn.addEventListener('click', () => this._toggleLikeBtn());
 
-    const deleteBtn = this._element.querySelector('.card__delete-btn');
-    deleteBtn.addEventListener('click', () => this._deleteCard());
+    this._deleteBtn = this._element.querySelector('.card__delete-btn');
+    this._deleteBtn.addEventListener('click', () => this._deleteCard());
   }
 
 
