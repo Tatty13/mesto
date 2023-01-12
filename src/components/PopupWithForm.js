@@ -13,11 +13,10 @@ class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const inputValues = this._inputs.reduce((acc, input) => {
+    return this._inputs.reduce((acc, input) => {
       acc[input.name] = input.value;
       return acc;
     }, {});
-    return inputValues;
   }
 
   setEventListeners() {
