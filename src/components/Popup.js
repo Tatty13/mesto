@@ -4,8 +4,10 @@ class Popup {
    */
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);  // version 1
   }
 
+  // ----------------- version 1 -------------------- //
   _handleEscClose(evt) {
     if (evt.code === 'Escape')
       this.close();
@@ -33,13 +35,13 @@ class Popup {
 
   open() {
     this._popup.classList.add('popup_open');
-    document.addEventListener('keydown', this._handleEscClose.bind(this));
-    // this._handleEscClose();
+    document.addEventListener('keydown', this._handleEscClose);  // version 1
+    // this._handleEscClose();  // version 2
   }
 
   close() {
     this._popup.classList.remove('popup_open');
-    document.removeEventListener('keydown', this._handleEscClose);
+    document.removeEventListener('keydown', this._handleEscClose);  // version 1
   }
 }
 
