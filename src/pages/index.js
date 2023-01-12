@@ -1,3 +1,5 @@
+import './index.css';
+
 import {profileEditBtn, cardAddBtn} from '../utils/constants.js';
 import {setProfileInfoToTheInputs, createCard} from '../utils/utils.js';
 import cardsData from '../utils/cardsData.js';

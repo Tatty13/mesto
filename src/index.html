@@ -5,8 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место Россия</title>
-  <link rel="stylesheet" href="./pages/index.css">
-  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="<%=require('./images/favicon.ico')%>" type="image/x-icon">
 </head>
 <body class="page">
   <div class="page__wrap">
@@ -16,7 +15,7 @@
     <main class="content">
       <section class="profile">
         <div class="profile__avatar-wrap">
-          <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
         </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -88,7 +87,5 @@
       <button class="card__delete-btn" type="button" aria-label="Удалить"></button>
     </li>
   </template>
-
-  <script src="./pages/index.js" type="module"></script>
 </body>
 </html>

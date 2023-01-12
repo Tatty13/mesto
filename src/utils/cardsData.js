@@ -1,27 +1,34 @@
+import oreshek from '../images/place-oreshek.jpg';
+import ruskeala from '../images/place-ruskeala.jpg';
+import yastrebinoe from '../images/place-yastrebinoe.jpg';
+import spb from '../images/place-spb.jpg';
+import velikieLuki from '../images/place-velikie-luki.jpg';
+import vologodskaya from '../images/place-vologodskaya.jpg';
+
 const cardsData = [
   {
     name: 'Шлиссельбург',
-    link: './images/place-oreshek.jpg'
+    link: oreshek
   },
   {
     name: 'Рускеала, Карелия',
-    link: './images/place-ruskeala.jpg'
+    link: ruskeala
   },
   {
     name: 'Ленинградская область',
-    link: './images/place-yastrebinoe.jpg'
+    link: yastrebinoe
   },
   {
     name: 'Санкт-Петербур',
-    link: './images/place-spb.jpg'
+    link: spb
   },
   {
     name: 'Великие Луки',
-    link: './images/place-velikie-luki.jpg'
+    link: velikieLuki
   },
   {
     name: 'Вологодская область',
-    link: './images/place-vologodskaya.jpg'
+    link: vologodskaya
   },
 ]
 
