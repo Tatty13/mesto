@@ -31,14 +31,15 @@ profilePopup.setEventListeners();
 
 
 
+const imagePopup = new PopupWithImage('.popup_content_photo');
+imagePopup.setEventListeners();
+
 /**
  * @param {string} name - image title
  * @param {string} link - image url
  */
 function handleCardImgClick(name, link) {
-  const imagePopup = new PopupWithImage({name, link}, '.popup_content_photo');
-  imagePopup.setEventListeners();
-  imagePopup.open();
+  imagePopup.open(name, link);
 }
 
 /**
